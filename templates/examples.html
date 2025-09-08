@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Examples</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .example-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .example-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .example-amount {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #d9534f;
+        }
+        .example-time {
+            color: #666;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #5bc0de;
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .btn:hover {
+            background-color: #46b8da;
+        }
+        .btn-back {
+            background-color: #6c757d;
+            margin-bottom: 20px;
+        }
+        .btn-back:hover {
+            background-color: #5a6268;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .feature {
+            font-size: 12px;
+            padding: 5px;
+            background: #f8f9fa;
+            border-radius: 3px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .feature-name {
+            font-weight: bold;
+            color: #333;
+        }
+        .feature-value {
+            color: #666;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="btn btn-back">← Back to Detection</a>
+        <h1>Fraud Examples from Dataset</h1>
+        
+        <!-- Example 1 -->
+        <div class="example-card">
+            <div class="example-header">
+                <div>
+                    <div class="example-amount">$149.62</div>
+                    <div class="example-time">Time: 0.0 seconds</div>
+                </div>
+                <form action="/predict_fraud_example" method="POST" style="display: inline;">
+                    <input type="hidden" name="example_id" value="1">
+                    <button type="submit" class="btn">Try This Example</button>
+                </form>
+            </div>
+            <div class="feature-grid">
+                <div class="feature"><span class="feature-name">V1:</span> <span class="feature-value">-1.359807</span></div>
+                <div class="feature"><span class="feature-name">V2:</span> <span class="feature-value">-0.072781</span></div>
+                <div class="feature"><span class="feature-name">V3:</span> <span class="feature-value">2.536347</span></div>
+                <div class="feature"><span class="feature-name">V4:</span> <span class="feature-value">1.378155</span></div>
+                <div class="feature"><span class="feature-name">V5:</span> <span class="feature-value">-0.338321</span></div>
+            </div>
+        </div>
+        
+        <!-- Example 2 -->
+        <div class="example-card">
+            <div class="example-header">
+                <div>
+                    <div class="example-amount">$2.69</div>
+                    <div class="example-time">Time: 0.0 seconds</div>
+                </div>
+                <form action="/predict_fraud_example" method="POST" style="display: inline;">
+                    <input type="hidden" name="example_id" value="2">
+                    <button type="submit" class="btn">Try This Example</button>
+                </form>
+            </div>
+            <div class="feature-grid">
+                <div class="feature"><span class="feature-name">V1:</span> <span class="feature-value">1.191857</span></div>
+                <div class="feature"><span class="feature-name">V2:</span> <span class="feature-value">0.266151</span></div>
+                <div class="feature"><span class="feature-name">V3:</span> <span class="feature-value">0.166480</span></div>
+                <div class="feature"><span class="feature-name">V4:</span> <span class="feature-value">0.448154</span></div>
+                <div class="feature"><span class="feature-name">V5:</span> <span class="feature-value">0.060018</span></div>
+            </div>
+        </div>
+        
+        <!-- Example 3 -->
+        <div class="example-card">
+            <div class="example-header">
+                <div>
+                    <div class="example-amount">$378.66</div>
+                    <div class="example-time">Time: 0.0 seconds</div>
+                </div>
+                <form action="/predict_fraud_example" method="POST" style="display: inline;">
+                    <input type="hidden" name="example_id" value="3">
+                    <button type="submit" class="btn">Try This Example</button>
+                </form>
+            </div>
+            <div class="feature-grid">
+                <div class="feature"><span class="feature-name">V1:</span> <span class="feature-value">-1.358354</span></div>
+                <div class="feature"><span class="feature-name">V2:</span> <span class="feature-value">-0.072781</span></div>
+                <div class="feature"><span class="feature-name">V3:</span> <span class="feature-value">2.536347</span></div>
+                <div class="feature"><span class="feature-name">V4:</span> <span class="feature-value">1.378155</span></div>
+                <div class="feature"><span class="feature-name">V5:</span> <span class="feature-value">-0.338321</span></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
