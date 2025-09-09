@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import joblib
 from sklearn.model_selection import train_test_split
@@ -18,7 +19,11 @@ X_train_scaled = scaler.fit_transform(X_train)
 model = RandomForestClassifier(n_estimators=200, random_state=42)
 model.fit(X_train_scaled, y_train)
 
-# Save model and scaler
+# Create models directory if it doesn't exist
+os.makedirs('models', exist_ok=True)
+
+# Save model, scaler, and feature order
 joblib.dump(model, 'models/random_forest_model.pkl')
 joblib.dump(scaler, 'models/scaler.pkl')
-print("Model and scaler saved successfully!")
+joblib.dump(list(X_train.columns), 'models/feature_order.pkl')
+print("Model, scaler, and feature order saved successfully!")

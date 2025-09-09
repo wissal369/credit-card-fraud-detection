@@ -2,7 +2,14 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+import os
 from datetime import datetime
+from pathlib import Path
+
+# Set up paths
+BASE_DIR = Path(__file__).parent
+MODELS_DIR = BASE_DIR / 'models'
+DATA_DIR = BASE_DIR
 
 # Set page config
 st.set_page_config(
@@ -17,9 +24,9 @@ try:
     from sklearn.preprocessing import StandardScaler
     
     # Define model paths
-    model_path = os.path.join('models', 'random_forest_model.pkl')
-    scaler_path = os.path.join('models', 'scaler.pkl')
-    feature_order_path = os.path.join('models', 'feature_order.pkl')
+    model_path = MODELS_DIR / 'random_forest_model.pkl'
+    scaler_path = MODELS_DIR / 'scaler.pkl'
+    feature_order_path = MODELS_DIR / 'feature_order.pkl'
     
     # Check if model exists
     if not os.path.exists(model_path):
@@ -50,7 +57,7 @@ try:
     else:
         st.sidebar.warning("Scaler not found. Creating a new scaler...")
         # Create and save a new scaler with the correct feature order
-        df = pd.read_csv('creditcard.csv')
+        df = pd.read_csv(DATA_DIR / 'creditcard.csv')
         
         # Ensure we have all required columns
         missing_cols = set(feature_order) - set(df.columns)
