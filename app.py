@@ -6,8 +6,6 @@ import random
 import logging
 from datetime import datetime
 
-model = joblib.load("PROJECTS/models/random_forest_model.pkl")
-
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -18,35 +16,19 @@ app = Flask(__name__)
 def generate_features(amount, time_value):
     # Load a sample of known fraud patterns
     try:
-        # Try to load the dataset to get real fraud patterns
         df = pd.read_csv('creditcard.csv')
-        fraud_samples = df[df['Class'] == 1].sample(1).iloc[0]
+        fraud_samples = df[df['Class'] == 1].sample(n=100, random_state=42)
+        features = fraud_samples.iloc[0, 1:29].values  # Get V1-V28 features
         
-        # Create features based on real fraud patterns, adjusted by the input amount
-        features = {}
-        for i in range(1, 29):
-            # Use the real fraud pattern but scale it by the input amount
-            v_name = f'V{i}'
-            base_value = fraud_samples[v_name]
-            
-            # Adjust based on the amount (frauds often have specific amount patterns)
-            amount_factor = np.log1p(amount) / 10  # Scale the amount effect
-            features[v_name] = base_value * (1 + 0.1 * amount_factor)
-            
-            # Add small random noise to make it less deterministic
-            features[v_name] += np.random.normal(0, 0.1)
-            
+        # Add small random noise to make it less deterministic
+        features = features + np.random.normal(0, 0.1, features.shape)
+        
         return features
         
     except Exception as e:
         logger.error(f"Error generating features: {str(e)}")
-        # Fallback to simple generation if there's an error
-        features = {}
-        for i in range(1, 29):
-            base_value = np.log1p(amount) * (1 + np.sin(time_value / (60*60*24) * 2 * np.pi))
-            noise = np.random.normal(0, 0.5)
-            features[f'V{i}'] = base_value * (0.8 + 0.4 * i/28) + noise
-        return features
+        # Fallback to random values if there's an error
+        return np.random.normal(0, 1, 28)
 
 # Load the model and scaler
 model = joblib.load('models/random_forest_model.pkl')
