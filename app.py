@@ -6,6 +6,8 @@ import random
 import logging
 from datetime import datetime
 
+model = joblib.load("PROJECTS/models/random_forest_model.pkl")
+
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
